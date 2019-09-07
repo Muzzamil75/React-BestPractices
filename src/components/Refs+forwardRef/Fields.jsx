@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import { InputCommp } from "./InputComp";
-import Input from  './withForwardRef'
+import Input from "./withForwardRef";
 
 class Fields extends Component {
-
+  constructor(props) {
+    super(props);
+    this.refBoy = React.createRef();
+  }
 
   onSubmit = () => {
     alert(`yey submited! ${this.firstName.value}, ${this.lastName.value} `);
+  };
+  check = () => {
+    const node = this.refBoy.current;
+    console.log(node);
+  };
+  componentDidMount() {
+    this.check();
   }
+
   handleKey = (inputType, e) => {
     if (e.keyCode === 13) {
       // eslint-disable-next-line default-case
@@ -20,14 +31,14 @@ class Fields extends Component {
           break;
         case "password":
           this.city.focus();
-          console.log(this.city)
+          console.log(this.city);
           break;
-          case  'city':
+        case "city":
           this.button.focus();
       }
     }
   };
- 
+
   render() {
     return (
       <React.Fragment>
@@ -59,19 +70,25 @@ class Fields extends Component {
             ref={input => (this.button = input)}
             value="submit"
             onClick={this.onSubmit}
-            type="submit"/>
+            type="submit"
+          />
           <br />
           <br />
           <br />
-
           <span>Using forward ref </span>
-
-{/* this is the nested element(or component) so we can access its properties by using ref (first ofcrse pass the ref prop to it) */}
-{/* now we are accesing the full component by using ref */}
-          <Input 
+          {/* this is the nested element(or component) so we can access its properties by using ref (first ofcrse pass the ref prop to it) */}
+          {/* now we are accesing the full component by using ref */}
+          <Input
             ref={input => (this.city = input)}
             onKeyUp={this.handleKey.bind(this, "city")}
-            />
+          />
+          <br />
+          <br />
+          <br />
+          <div ref={this.refBoy}>
+            <input type="text" name="name" />
+            <input type="text" name="email" />
+          </div>
         </div>
       </React.Fragment>
     );
