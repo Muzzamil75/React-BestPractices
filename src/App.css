@@ -21,6 +21,23 @@
 .App-link {
   color: #61dafb;
 }
+.historyItem {
+  padding-top: 10px;
+  background-Color : #f7e8bc70;
+  list-style-type: none;
+  border: 1px solid #f9e5ad;
+  margin : 10px
+}
+.age {
+  margin: 10px;
+}
+
+.ageUp,
+.ageDown {
+  margin: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 @keyframes App-logo-spin {
   from {
